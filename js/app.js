@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-   var token = "xoxp-584908689392-594905098400-646784746422-bdb307c9ff6bf86d26b88641a29b7fe2"
+   var token = "xoxp-584908689392-594905098400-644122719460-bf114edaa3386b9c7bfc9ad5135dae33"
   var queryURL = 'https://slack.com/api/users.list?token=' + token
   var members = []
 
@@ -37,8 +37,18 @@ $(document).ready(function() {
   function handleMemberClick() {
     var clickedMember = this
     var member = members.find(function(member) {
-      return member.name === clickedMember.id
+      return member.name === clickedMember.id && clickedMember.id !="mginnfranz"
+      && clickedMember.id !="jturner" && clickedMember.id !="cl54wilks"
+      && clickedMember.id !="dave.leo.shilander"
+      && clickedMember.id !="dave.leo.shilander_ta"  && clickedMember.id !="remigio.eduardo94"
+      && clickedMember.id !="ploy3_98"    && clickedMember.id !="janellecueto"
+      && clickedMember.id !="anand92490" && clickedMember.id !="erandro"
+      && clickedMember.id !="s.r.corwith" && clickedMember.id !="googledrive"
+      && clickedMember.id !="sarahamann96" && clickedMember.id !="neftalisalgado"
+      && clickedMember.id !="cody.monta" && clickedMember.id !="alaa.naji.usa_ta"
     })
+
+    
     setSpotlight(member)
   }
 
@@ -65,8 +75,31 @@ $(document).ready(function() {
   function renderUI(response) {
     $membersDiv.empty()
     response.members.forEach(function(memb) {
-      members.push(memb)
-      $membersDiv.append('<div id="' + memb.name + '" class="member">' + '<img src="' + memb.profile.image_72 + '" class="img-circle" alt="' + memb.name + '" /><span>' + memb.name + '</span></div>')
+
+    // clickedMember.id !="mginnfranz"
+    //   && clickedMember.id !="jturner" && clickedMember.id !="cl54wilks"
+    //   && clickedMember.id !="dave.leo.shilander"
+    //   && clickedMember.id !="dave.leo.shilander_ta"  && clickedMember.id !="remigio.eduardo94"
+    //   && clickedMember.id !="ploy3_98"    && clickedMember.id !="janellecueto"
+    //   && clickedMember.id !="anand92490" && clickedMember.id !="erandro"
+    //   && clickedMember.id !="s.r.corwith" && clickedMember.id !="googledrive"
+    //   && clickedMember.id !="sarahamann96" && clickedMember.id !="neftalisalgado"
+    //   && clickedMember.id !="cody.monta" && clickedMember.id !="alaa.naji.usa_ta"
+
+      if(  memb.name !="mginnfranz"
+        &&  memb.name !="jturner" &&  memb.name !="cl54wilks"
+       && memb.name !="dave.leo.shilander"
+         && memb.name !="dave.leo.shilander_ta"  && memb.name !="remigio.eduardo94"
+        && memb.name !="ploy3_98"    && memb.name !="janellecueto"
+          && memb.name !="anand92490" && memb.name !="erandro"
+         && memb.name !="s.r.corwith" && memb.name !="googledrive"
+        && memb.name !="sarahamann96" && memb.name!="neftalisalgado"
+         && memb.name !="cody.monta" && memb.name !="alaa.naji.usa_ta" &&  memb.name !="slackbot")
+      {
+        members.push(memb)
+        $membersDiv.append('<div id="' + memb.name + '" class="member">' + '<img src="' + memb.profile.image_72 + '" class="img-circle" alt="' + memb.name + '" /><span>' + memb.name + '</span></div>')
+      }
+     
     })
     setSpotlight(members[0])
     $loading.hide()
@@ -77,7 +110,10 @@ $(document).ready(function() {
     url: queryURL,
     method: 'GET' 
   }).then(function(response) {
-    console.log('Slack Channel Members List:', response.members)
+
+
+
+    console.log('Slack Channel Members List:', response.members  )
     renderUI(response)
   }).catch(function(err) {
     var errMessage = '<span style="font-size: 60px;">😞</span><br/> Error fetching data...<br/>'
