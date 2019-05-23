@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-   var token = "xoxp-584908689392-594905098400-646428380215-5a1aee846e36e9e8f00653591c51f79c"
+   var token = "xoxp-584908689392-594905098400-646784746422-bdb307c9ff6bf86d26b88641a29b7fe2"
   var queryURL = 'https://slack.com/api/users.list?token=' + token
   var members = []
 
